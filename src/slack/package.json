@@ -14,16 +14,26 @@
     "dist"
   ],
   "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "format": "biome format --write",
+    "lint:fix": "biome lint --fix",
+    "start": "wrangler dev",
+    "cf-typegen": "wrangler types",
     "build": "tsc && shx chmod +x dist/*.js",
     "prepare": "npm run build",
     "watch": "tsc --watch"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "1.0.1"
+    "@modelcontextprotocol/sdk": "^1.11.0",
+    "agents": "^0.0.76",
+    "zod": "^3.24.3"
   },
   "devDependencies": {
-    "@types/node": "^22",
+    "@cloudflare/workers-types": "^4.20250504.0",
+    "@types/node": "^22.15.3",
     "shx": "^0.3.4",
-    "typescript": "^5.6.2"
+    "typescript": "^5.6.2",
+    "wrangler": "^4.14.1"
   }
 }
