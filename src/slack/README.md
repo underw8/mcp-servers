@@ -5,6 +5,7 @@ MCP Server for the Slack API, enabling Claude to interact with Slack workspaces.
 ## Tools
 
 1. `slack_list_channels`
+
    - List public or pre-defined channels in the workspace
    - Optional inputs:
      - `limit` (number, default: 100, max: 200): Maximum number of channels to return
@@ -12,6 +13,7 @@ MCP Server for the Slack API, enabling Claude to interact with Slack workspaces.
    - Returns: List of channels with their IDs and information
 
 2. `slack_post_message`
+
    - Post a new message to a Slack channel
    - Required inputs:
      - `channel_id` (string): The ID of the channel to post to
@@ -19,6 +21,7 @@ MCP Server for the Slack API, enabling Claude to interact with Slack workspaces.
    - Returns: Message posting confirmation and timestamp
 
 3. `slack_reply_to_thread`
+
    - Reply to a specific message thread
    - Required inputs:
      - `channel_id` (string): The channel containing the thread
@@ -27,6 +30,7 @@ MCP Server for the Slack API, enabling Claude to interact with Slack workspaces.
    - Returns: Reply confirmation and timestamp
 
 4. `slack_add_reaction`
+
    - Add an emoji reaction to a message
    - Required inputs:
      - `channel_id` (string): The channel containing the message
@@ -35,6 +39,7 @@ MCP Server for the Slack API, enabling Claude to interact with Slack workspaces.
    - Returns: Reaction confirmation
 
 5. `slack_get_channel_history`
+
    - Get recent messages from a channel
    - Required inputs:
      - `channel_id` (string): The channel ID
@@ -43,14 +48,15 @@ MCP Server for the Slack API, enabling Claude to interact with Slack workspaces.
    - Returns: List of messages with their content and metadata
 
 6. `slack_get_thread_replies`
+
    - Get all replies in a message thread
    - Required inputs:
      - `channel_id` (string): The channel containing the thread
      - `thread_ts` (string): Timestamp of the parent message
    - Returns: List of replies with their content and metadata
 
-
 7. `slack_get_users`
+
    - Get list of workspace users with basic profile information
    - Optional inputs:
      - `cursor` (string): Pagination cursor for next page
@@ -66,6 +72,7 @@ MCP Server for the Slack API, enabling Claude to interact with Slack workspaces.
 ## Setup
 
 1. Create a Slack App:
+
    - Visit the [Slack Apps page](https://api.slack.com/apps)
    - Click "Create New App"
    - Choose "From scratch"
@@ -73,6 +80,7 @@ MCP Server for the Slack API, enabling Claude to interact with Slack workspaces.
 
 2. Configure Bot Token Scopes:
    Navigate to "OAuth & Permissions" and add these scopes:
+
    - `channels:history` - View messages and other content in public channels
    - `channels:read` - View basic channel information
    - `chat:write` - Send messages as the app
@@ -80,11 +88,12 @@ MCP Server for the Slack API, enabling Claude to interact with Slack workspaces.
    - `users:read` - View users and their basic information
    - `users.profile:read` - View detailed profiles about users
 
-4. Install App to Workspace:
+3. Install App to Workspace:
+
    - Click "Install to Workspace" and authorize the app
    - Save the "Bot User OAuth Token" that starts with `xoxb-`
 
-5. Get your Team ID (starts with a `T`) by following [this guidance](https://slack.com/help/articles/221769328-Locate-your-Slack-URL-or-ID#find-your-workspace-or-org-id)
+4. Get your Team ID (starts with a `T`) by following [this guidance](https://slack.com/help/articles/221769328-Locate-your-Slack-URL-or-ID#find-your-workspace-or-org-id)
 
 ### Usage with Claude Desktop
 
@@ -97,10 +106,7 @@ Add the following to your `claude_desktop_config.json`:
   "mcpServers": {
     "slack": {
       "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-slack"
-      ],
+      "args": ["-y", "@modelcontextprotocol/server-slack"],
       "env": {
         "SLACK_BOT_TOKEN": "xoxb-your-bot-token",
         "SLACK_TEAM_ID": "T01234567",
@@ -144,9 +150,9 @@ Add the following to your `claude_desktop_config.json`:
 
 For quick installation, click one of the installation buttons below...
 
-[![Install with NPX in VS Code](https://img.shields.io/badge/VS_Code-NPM-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=slack&inputs=%5B%7B%22type%22%3A%22promptString%22%2C%22id%22%3A%22slack_bot_token%22%2C%22description%22%3A%22Slack%20Bot%20Token%20(starts%20with%20xoxb-)%22%2C%22password%22%3Atrue%7D%2C%7B%22type%22%3A%22promptString%22%2C%22id%22%3A%22slack_team_id%22%2C%22description%22%3A%22Slack%20Team%20ID%20(starts%20with%20T)%22%7D%5D&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40modelcontextprotocol%2Fserver-slack%22%5D%2C%22env%22%3A%7B%22SLACK_BOT_TOKEN%22%3A%22%24%7Binput%3Aslack_bot_token%7D%22%2C%22SLACK_TEAM_ID%22%3A%22%24%7Binput%3Aslack_team_id%7D%22%7D%7D) [![Install with NPX in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-NPM-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=slack&inputs=%5B%7B%22type%22%3A%22promptString%22%2C%22id%22%3A%22slack_bot_token%22%2C%22description%22%3A%22Slack%20Bot%20Token%20(starts%20with%20xoxb-)%22%2C%22password%22%3Atrue%7D%2C%7B%22type%22%3A%22promptString%22%2C%22id%22%3A%22slack_team_id%22%2C%22description%22%3A%22Slack%20Team%20ID%20(starts%20with%20T)%22%7D%5D&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40modelcontextprotocol%2Fserver-slack%22%5D%2C%22env%22%3A%7B%22SLACK_BOT_TOKEN%22%3A%22%24%7Binput%3Aslack_bot_token%7D%22%2C%22SLACK_TEAM_ID%22%3A%22%24%7Binput%3Aslack_team_id%7D%22%7D%7D&quality=insiders)
+[![Install with NPX in VS Code](https://img.shields.io/badge/VS_Code-NPM-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](<https://insiders.vscode.dev/redirect/mcp/install?name=slack&inputs=%5B%7B%22type%22%3A%22promptString%22%2C%22id%22%3A%22slack_bot_token%22%2C%22description%22%3A%22Slack%20Bot%20Token%20(starts%20with%20xoxb-)%22%2C%22password%22%3Atrue%7D%2C%7B%22type%22%3A%22promptString%22%2C%22id%22%3A%22slack_team_id%22%2C%22description%22%3A%22Slack%20Team%20ID%20(starts%20with%20T)%22%7D%5D&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40modelcontextprotocol%2Fserver-slack%22%5D%2C%22env%22%3A%7B%22SLACK_BOT_TOKEN%22%3A%22%24%7Binput%3Aslack_bot_token%7D%22%2C%22SLACK_TEAM_ID%22%3A%22%24%7Binput%3Aslack_team_id%7D%22%7D%7D>) [![Install with NPX in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-NPM-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](<https://insiders.vscode.dev/redirect/mcp/install?name=slack&inputs=%5B%7B%22type%22%3A%22promptString%22%2C%22id%22%3A%22slack_bot_token%22%2C%22description%22%3A%22Slack%20Bot%20Token%20(starts%20with%20xoxb-)%22%2C%22password%22%3Atrue%7D%2C%7B%22type%22%3A%22promptString%22%2C%22id%22%3A%22slack_team_id%22%2C%22description%22%3A%22Slack%20Team%20ID%20(starts%20with%20T)%22%7D%5D&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40modelcontextprotocol%2Fserver-slack%22%5D%2C%22env%22%3A%7B%22SLACK_BOT_TOKEN%22%3A%22%24%7Binput%3Aslack_bot_token%7D%22%2C%22SLACK_TEAM_ID%22%3A%22%24%7Binput%3Aslack_team_id%7D%22%7D%7D&quality=insiders>)
 
-[![Install with Docker in VS Code](https://img.shields.io/badge/VS_Code-Docker-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=slack&inputs=%5B%7B%22type%22%3A%22promptString%22%2C%22id%22%3A%22slack_bot_token%22%2C%22description%22%3A%22Slack%20Bot%20Token%20(starts%20with%20xoxb-)%22%2C%22password%22%3Atrue%7D%2C%7B%22type%22%3A%22promptString%22%2C%22id%22%3A%22slack_team_id%22%2C%22description%22%3A%22Slack%20Team%20ID%20(starts%20with%20T)%22%7D%5D&config=%7B%22command%22%3A%22docker%22%2C%22args%22%3A%5B%22run%22%2C%22-i%22%2C%22--rm%22%2C%22mcp%2Fslack%22%5D%2C%22env%22%3A%7B%22SLACK_BOT_TOKEN%22%3A%22%24%7Binput%3Aslack_bot_token%7D%22%2C%22SLACK_TEAM_ID%22%3A%22%24%7Binput%3Aslack_team_id%7D%22%7D%7D) [![Install with Docker in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Docker-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=slack&inputs=%5B%7B%22type%22%3A%22promptString%22%2C%22id%22%3A%22slack_bot_token%22%2C%22description%22%3A%22Slack%20Bot%20Token%20(starts%20with%20xoxb-)%22%2C%22password%22%3Atrue%7D%2C%7B%22type%22%3A%22promptString%22%2C%22id%22%3A%22slack_team_id%22%2C%22description%22%3A%22Slack%20Team%20ID%20(starts%20with%20T)%22%7D%5D&config=%7B%22command%22%3A%22docker%22%2C%22args%22%3A%5B%22run%22%2C%22-i%22%2C%22--rm%22%2C%22mcp%2Fslack%22%5D%2C%22env%22%3A%7B%22SLACK_BOT_TOKEN%22%3A%22%24%7Binput%3Aslack_bot_token%7D%22%2C%22SLACK_TEAM_ID%22%3A%22%24%7Binput%3Aslack_team_id%7D%22%7D%7D&quality=insiders)
+[![Install with Docker in VS Code](https://img.shields.io/badge/VS_Code-Docker-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](<https://insiders.vscode.dev/redirect/mcp/install?name=slack&inputs=%5B%7B%22type%22%3A%22promptString%22%2C%22id%22%3A%22slack_bot_token%22%2C%22description%22%3A%22Slack%20Bot%20Token%20(starts%20with%20xoxb-)%22%2C%22password%22%3Atrue%7D%2C%7B%22type%22%3A%22promptString%22%2C%22id%22%3A%22slack_team_id%22%2C%22description%22%3A%22Slack%20Team%20ID%20(starts%20with%20T)%22%7D%5D&config=%7B%22command%22%3A%22docker%22%2C%22args%22%3A%5B%22run%22%2C%22-i%22%2C%22--rm%22%2C%22mcp%2Fslack%22%5D%2C%22env%22%3A%7B%22SLACK_BOT_TOKEN%22%3A%22%24%7Binput%3Aslack_bot_token%7D%22%2C%22SLACK_TEAM_ID%22%3A%22%24%7Binput%3Aslack_team_id%7D%22%7D%7D>) [![Install with Docker in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Docker-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](<https://insiders.vscode.dev/redirect/mcp/install?name=slack&inputs=%5B%7B%22type%22%3A%22promptString%22%2C%22id%22%3A%22slack_bot_token%22%2C%22description%22%3A%22Slack%20Bot%20Token%20(starts%20with%20xoxb-)%22%2C%22password%22%3Atrue%7D%2C%7B%22type%22%3A%22promptString%22%2C%22id%22%3A%22slack_team_id%22%2C%22description%22%3A%22Slack%20Team%20ID%20(starts%20with%20T)%22%7D%5D&config=%7B%22command%22%3A%22docker%22%2C%22args%22%3A%5B%22run%22%2C%22-i%22%2C%22--rm%22%2C%22mcp%2Fslack%22%5D%2C%22env%22%3A%7B%22SLACK_BOT_TOKEN%22%3A%22%24%7Binput%3Aslack_bot_token%7D%22%2C%22SLACK_TEAM_ID%22%3A%22%24%7Binput%3Aslack_team_id%7D%22%7D%7D&quality=insiders>)
 
 For manual installation, add the following JSON block to your User Settings (JSON) file in VS Code. You can do this by pressing `Ctrl + Shift + P` and typing `Preferences: Open Settings (JSON)`.
 
@@ -227,6 +233,7 @@ Optionally, you can add it to a file called `.vscode/mcp.json` in your workspace
 ### Troubleshooting
 
 If you encounter permission errors, verify that:
+
 1. All required scopes are added to your Slack app
 2. The app is properly installed to your workspace
 3. The tokens and workspace ID are correctly copied to your configuration
@@ -239,6 +246,65 @@ Docker build:
 ```bash
 docker build -t mcp/slack -f src/slack/Dockerfile .
 ```
+
+## Cloudflare Worker Deployment
+
+This MCP server can also be deployed as a Cloudflare Worker using the MCP Agent approach. This provides a serverless deployment option with high availability.
+
+### Prerequisites
+
+1. Install Wrangler CLI:
+
+```bash
+yarn global add wrangler
+# or
+npm install -g wrangler
+```
+
+2. Authenticate with Cloudflare:
+
+```bash
+wrangler login
+```
+
+### Local Development
+
+To run the server locally for development:
+
+```bash
+cd src/slack
+yarn dev
+# or
+npm run dev
+```
+
+### Deployment
+
+To deploy to Cloudflare Workers:
+
+```bash
+cd src/slack
+yarn deploy
+# or
+npm run deploy
+```
+
+### Environment Variables
+
+Set the required environment variables in the Cloudflare dashboard or using Wrangler secrets:
+
+```bash
+wrangler secret put SLACK_BOT_TOKEN
+wrangler secret put SLACK_TEAM_ID
+wrangler secret put SLACK_CHANNEL_IDS # Optional
+```
+
+### API Endpoints
+
+When deployed as a Cloudflare Worker, the Slack MCP server exposes two endpoints:
+
+- `/mcp`: The main MCP endpoint for tool execution
+- `/sse`: Server-Sent Events endpoint for real-time communication
 
 ## License
 
